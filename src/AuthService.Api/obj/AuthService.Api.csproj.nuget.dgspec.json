@@ -69,6 +69,10 @@
               "target": "Package",
               "version": "[9.0.9, )"
             },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
             "NetEscapades.AspNetCore.SecurityHeaders": {
               "target": "Package",
               "version": "[1.2.0, )"
@@ -153,13 +157,21 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.15.0, )"
+            },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[10.0.2, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
-              "version": "[10.0.2, )"
+              "version": "[10.0.3, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[10.0.3, )"
             }
           },
           "imports": [

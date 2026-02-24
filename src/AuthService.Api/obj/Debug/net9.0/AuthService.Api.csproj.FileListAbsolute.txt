@@ -157,3 +157,7 @@ C:\Eduardo-6to\auth_service\src\AuthService.Api\obj\Debug\net9.0\refint\AuthServ
 C:\Eduardo-6to\auth_service\src\AuthService.Api\obj\Debug\net9.0\AuthService.Api.pdb
 C:\Eduardo-6to\auth_service\src\AuthService.Api\obj\Debug\net9.0\AuthService.Api.genruntimeconfig.cache
 C:\Eduardo-6to\auth_service\src\AuthService.Api\obj\Debug\net9.0\ref\AuthService.Api.dll
+C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
+C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net9.0\MailKit.dll
+C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net9.0\MimeKit.dll
+C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net9.0\System.Diagnostics.DiagnosticSource.dll
