@@ -1,8 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+using AuthService.Domain.Entitis;
+
 public class UserEmail
 {
     [Key]
     [MaxLength(16)]
-    public string id { get; set; } = string.Empty;
+    public string Id { get; set; } = string.Empty;
 
     [Required]
     [MaxLength(50)]

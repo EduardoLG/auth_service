@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 namespace AuthService.Domain.Entitis;
 
 public class UserPasswordReset
