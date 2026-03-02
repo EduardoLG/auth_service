@@ -8,7 +8,7 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
 {
     private readonly ApplicationDbContext _context = context;
 
-    public async Task<User?> GetByIdAsync(string id)
+    public async Task<User> GetByIdAsync(string id)
     {
         var user = await _context.Users
             .Include(u => u.UserProfile)

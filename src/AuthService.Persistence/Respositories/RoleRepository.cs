@@ -8,7 +8,7 @@ namespace AuthService.Persistence.Repositories;
 public class RoleRepository(ApplicationDbContext context) : IRoleRepository
 {
     // Cambiado 'ByName' a 'BYName' para que coincida con tu interfaz
-    public async Task<Role?> GetBYNameAsync(string roleName)
+    public async Task<Role?> GetByNameAsync(string roleName)
     {
         return await context.Roles
             .Include(r => r.UserRoles)
@@ -38,7 +38,7 @@ public class RoleRepository(ApplicationDbContext context) : IRoleRepository
     }
 
     // Cambiado 'Names' (plural) a 'Name' (singular) para que coincida con tu interfaz
-    public async Task<IReadOnlyList<string>> GetUserRoleNameAsync(string userId)
+    public async Task<IReadOnlyList<string>> GetUserRoleNamesAsync(string userId)
     {
         var roles = await context.UserRoles
             .Where(ur => ur.UserId == userId)
