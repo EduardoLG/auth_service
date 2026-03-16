@@ -6,6 +6,7 @@ C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\AuthService.Api
 C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\AuthService.Api.dll
 C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\AuthService.Api.pdb
 C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\CloudinaryDotNet.dll
 C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\EFCore.NamingConventions.dll
 C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\Humanizer.dll
 C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\Konscious.Security.Cryptography.Argon2.dll
@@ -50,6 +51,7 @@ C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\Microsoft.OpenA
 C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\MimeKit.dll
 C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\NetEscapades.AspNetCore.SecurityHeaders.dll
+C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\Npgsql.dll
 C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Eduardo-6to\auth_service\src\AuthService.Api\bin\Debug\net8.0\Serilog.dll

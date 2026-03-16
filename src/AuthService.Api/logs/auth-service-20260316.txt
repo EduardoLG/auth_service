@@ -1,0 +1,449 @@
+[2026-03-16 08:58:50 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 08:58:51 ERR] An error occurred while initializing the database {"SourceContext":"Program"}
+Npgsql.PostgresException (0x80004005): 28P01: la autentificaci�n password fall� para el usuario �tu_usuario�
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|214_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.UnpooledDataSource.Get(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlDatabaseCreator.Exists(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlDatabaseCreator.Exists(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Eduardo-6to\auth_service\src\AuthService.Api\Program.cs:line 172
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: la autentificaci�n password fall� para el usuario �tu_usuario�
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+[2026-03-16 08:59:21 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 08:59:23 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-16 08:59:23 ERR] Failed executing DbCommand (3ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Boolean), @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?', @p10='?', @p11='?' (DbType = Boolean), @p12='?' (DbType = DateTime), @p13='?', @p14='?', @p15='?', @p16='?' (DbType = DateTime), @p17='?', @p18='?', @p19='?', @p20='?', @p21='?', @p22='?', @p23='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO users (id, created_at, email, name, password, status, surname, updated_at, username)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+INSERT INTO user_emails (id, email_verification_token, email_verified, email_verified_token_expire, user_id)
+VALUES (@p9, @p10, @p11, @p12, @p13);
+INSERT INTO user_profiles (id, bio, date_of_birth, phone, profile_picture, profile_picture_url, user_id)
+VALUES (@p14, @p15, @p16, @p17, @p18, @p19, @p20);
+INSERT INTO user_roles (id, role_id, user_id)
+VALUES (@p21, @p22, @p23); {"EventId":{"Id":20102,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandError"},"SourceContext":"Microsoft.EntityFrameworkCore.Database.Command"}
+[2026-03-16 08:59:23 ERR] An exception occurred in the database while saving changes for context type 'AuthService.Persistence.Data.ApplicationDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.ArgumentException: Cannot write DateTime with Kind=Unspecified to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array, range, or multirange. (Parameter 'value')
+   at Npgsql.Internal.Converters.DateTimeConverterResolver`1.Get(DateTime value, Nullable`1 expectedPgTypeId, Boolean validateOnly)
+   at Npgsql.Internal.Converters.DateTimeConverterResolver.<>c.<CreateResolver>b__0_0(DateTimeConverterResolver`1 resolver, DateTime value, Nullable`1 expectedPgTypeId)
+   at Npgsql.Internal.Converters.DateTimeConverterResolver`1.Get(T value, Nullable`1 expectedPgTypeId)
+   at Npgsql.Internal.PgConverterResolver`1.GetAsObjectInternal(PgTypeInfo typeInfo, Object value, Nullable`1 expectedPgTypeId)
+   at Npgsql.Internal.PgResolverTypeInfo.GetResolutionAsObject(Object value, Nullable`1 expectedPgTypeId)
+   at Npgsql.Internal.PgTypeInfo.GetObjectResolution(Object value)
+   at Npgsql.NpgsqlParameter.ResolveConverter(PgTypeInfo typeInfo)
+   at Npgsql.NpgsqlParameter.ResolveTypeInfo(PgSerializerOptions options)
+   at Npgsql.NpgsqlParameterCollection.ProcessParameters(PgSerializerOptions options, Boolean validateValues, CommandType commandType)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken) {"EventId":{"Id":10000,"Name":"Microsoft.EntityFrameworkCore.Update.SaveChangesFailed"},"SourceContext":"Microsoft.EntityFrameworkCore.Update"}
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.ArgumentException: Cannot write DateTime with Kind=Unspecified to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array, range, or multirange. (Parameter 'value')
+   at Npgsql.Internal.Converters.DateTimeConverterResolver`1.Get(DateTime value, Nullable`1 expectedPgTypeId, Boolean validateOnly)
+   at Npgsql.Internal.Converters.DateTimeConverterResolver.<>c.<CreateResolver>b__0_0(DateTimeConverterResolver`1 resolver, DateTime value, Nullable`1 expectedPgTypeId)
+   at Npgsql.Internal.Converters.DateTimeConverterResolver`1.Get(T value, Nullable`1 expectedPgTypeId)
+   at Npgsql.Internal.PgConverterResolver`1.GetAsObjectInternal(PgTypeInfo typeInfo, Object value, Nullable`1 expectedPgTypeId)
+   at Npgsql.Internal.PgResolverTypeInfo.GetResolutionAsObject(Object value, Nullable`1 expectedPgTypeId)
+   at Npgsql.Internal.PgTypeInfo.GetObjectResolution(Object value)
+   at Npgsql.NpgsqlParameter.ResolveConverter(PgTypeInfo typeInfo)
+   at Npgsql.NpgsqlParameter.ResolveTypeInfo(PgSerializerOptions options)
+   at Npgsql.NpgsqlParameterCollection.ProcessParameters(PgSerializerOptions options, Boolean validateValues, CommandType commandType)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+[2026-03-16 08:59:23 ERR] An error occurred while initializing the database {"SourceContext":"Program"}
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.ArgumentException: Cannot write DateTime with Kind=Unspecified to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array, range, or multirange. (Parameter 'value')
+   at Npgsql.Internal.Converters.DateTimeConverterResolver`1.Get(DateTime value, Nullable`1 expectedPgTypeId, Boolean validateOnly)
+   at Npgsql.Internal.Converters.DateTimeConverterResolver.<>c.<CreateResolver>b__0_0(DateTimeConverterResolver`1 resolver, DateTime value, Nullable`1 expectedPgTypeId)
+   at Npgsql.Internal.Converters.DateTimeConverterResolver`1.Get(T value, Nullable`1 expectedPgTypeId)
+   at Npgsql.Internal.PgConverterResolver`1.GetAsObjectInternal(PgTypeInfo typeInfo, Object value, Nullable`1 expectedPgTypeId)
+   at Npgsql.Internal.PgResolverTypeInfo.GetResolutionAsObject(Object value, Nullable`1 expectedPgTypeId)
+   at Npgsql.Internal.PgTypeInfo.GetObjectResolution(Object value)
+   at Npgsql.NpgsqlParameter.ResolveConverter(PgTypeInfo typeInfo)
+   at Npgsql.NpgsqlParameter.ResolveTypeInfo(PgSerializerOptions options)
+   at Npgsql.NpgsqlParameterCollection.ProcessParameters(PgSerializerOptions options, Boolean validateValues, CommandType commandType)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at AuthService.Persistence.Data.DataSeeder.SeedDataAsync(ApplicationDbContext context) in C:\Eduardo-6to\auth_service\src\AuthService.Persistence\Data\DataSeeder.cs:line 71
+   at Program.<Main>$(String[] args) in C:\Eduardo-6to\auth_service\src\AuthService.Api\Program.cs:line 175
+[2026-03-16 09:01:53 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 09:01:54 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-16 09:01:54 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-16 09:01:54 INF] AuthService API is running at http://localhost:5226. Health endpoint: http://localhost:5226/health {"SourceContext":"Program"}
+[2026-03-16 09:04:29 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 09:04:30 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-16 09:04:30 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-16 09:04:30 INF] AuthService API is running at http://localhost:5226. Health endpoint: http://localhost:5226/health {"SourceContext":"Program"}
+[2026-03-16 09:07:59 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNK3DLN9FACT:00000001","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DLN9FACT"}
+[2026-03-16 09:07:59 INF] HTTP POST /api/v1/Auth/register responded 400 in 109.2381 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3DLN9FACT:00000001","ConnectionId":"0HNK3DLN9FACT"}
+[2026-03-16 09:08:15 ERR] An unhandled exception occurred {"SourceContext":"AuthService.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNK3DLN9FACT:00000002","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DLN9FACT"}
+System.InvalidOperationException: Default role 'USER_ROLE' not found. Ensure seeding runs before registration.
+   at AuthService.Application.Services.AuthService.RegisterAsync(RegisterDto registerDto) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\AuthService.cs:line 83
+   at AuthService.Api.Controllers.AuthController.Register(RegisterDto registerDto) in C:\Eduardo-6to\auth_service\src\AuthService.Api\Controllers\AuthController.cs:line 72
+   at lambda_method22(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthService.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Eduardo-6to\auth_service\src\AuthService.Api\Middlewares\GlobalExceptionMiddleware.cs:line 17
+[2026-03-16 09:08:15 INF] HTTP POST /api/v1/Auth/register responded 404 in 174.4637 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3DLN9FACT:00000002","ConnectionId":"0HNK3DLN9FACT"}
+[2026-03-16 09:09:22 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 09:09:23 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-16 09:09:23 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-16 09:09:23 INF] AuthService API is running at http://localhost:5226. Health endpoint: http://localhost:5226/health {"SourceContext":"Program"}
+[2026-03-16 09:09:56 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNK3DO240HUT:00000005","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DO240HUT"}
+[2026-03-16 09:09:57 ERR] An unhandled exception occurred {"SourceContext":"AuthService.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNK3DO240HUT:00000005","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DO240HUT"}
+System.InvalidOperationException: Default role 'User' not found. Ensure seeding runs before registration.
+   at AuthService.Application.Services.AuthService.RegisterAsync(RegisterDto registerDto) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\AuthService.cs:line 83
+   at AuthService.Api.Controllers.AuthController.Register(RegisterDto registerDto) in C:\Eduardo-6to\auth_service\src\AuthService.Api\Controllers\AuthController.cs:line 72
+   at lambda_method22(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthService.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Eduardo-6to\auth_service\src\AuthService.Api\Middlewares\GlobalExceptionMiddleware.cs:line 17
+[2026-03-16 09:09:57 INF] HTTP POST /api/v1/Auth/register responded 404 in 255.5129 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3DO240HUT:00000005","ConnectionId":"0HNK3DO240HUT"}
+[2026-03-16 09:10:42 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 09:10:42 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-16 09:10:42 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-16 09:10:43 INF] AuthService API is running at http://localhost:5226. Health endpoint: http://localhost:5226/health {"SourceContext":"Program"}
+[2026-03-16 09:12:02 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNK3DP8D4PV7:00000003","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DP8D4PV7"}
+[2026-03-16 09:12:03 INF] User edulopez registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"cd96ee57-0b15-4b28-aeed-18d969985095","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3DP8D4PV7:00000003","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DP8D4PV7"}
+[2026-03-16 09:12:03 INF] HTTP POST /api/v1/Auth/register responded 201 in 679.0556 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3DP8D4PV7:00000003","ConnectionId":"0HNK3DP8D4PV7"}
+[2026-03-16 09:12:24 ERR] Error sending email to user@example.com {"SourceContext":"AuthService.Application.Services.EmailService","ActionId":"cd96ee57-0b15-4b28-aeed-18d969985095","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3DP8D4PV7:00000003","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DP8D4PV7"}
+System.Net.Sockets.SocketException (10060): Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.TaskToAsyncResult.End(IAsyncResult asyncResult)
+   at MailKit.Net.SocketUtils.SocketConnectState.OnEndConnect(IAsyncResult ar)
+--- End of stack trace from previous location ---
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, CancellationToken cancellationToken)
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, Int32 timeout, CancellationToken cancellationToken)
+   at MailKit.MailService.ConnectNetworkAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at MailKit.Net.Smtp.SmtpClient.ConnectAsync(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   at AuthService.Application.Services.EmailService.ExecuteSendEmailAsync(String to, String subject, String body) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\EmailService.cs:line 82
+[2026-03-16 09:12:24 INF] Verification email sent {"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"cd96ee57-0b15-4b28-aeed-18d969985095","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3DP8D4PV7:00000003","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DP8D4PV7"}
+[2026-03-16 09:12:55 INF] User despacito registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"cd96ee57-0b15-4b28-aeed-18d969985095","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3DP8D4PV7:00000004","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DP8D4PV7"}
+[2026-03-16 09:12:55 INF] HTTP POST /api/v1/Auth/register responded 201 in 438.5086 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3DP8D4PV7:00000004","ConnectionId":"0HNK3DP8D4PV7"}
+[2026-03-16 09:13:16 ERR] Error sending email to eltrabajobienhechokinalito@gmail.com {"SourceContext":"AuthService.Application.Services.EmailService","ActionId":"cd96ee57-0b15-4b28-aeed-18d969985095","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3DP8D4PV7:00000004","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DP8D4PV7"}
+System.Net.Sockets.SocketException (10060): Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.TaskToAsyncResult.End(IAsyncResult asyncResult)
+   at MailKit.Net.SocketUtils.SocketConnectState.OnEndConnect(IAsyncResult ar)
+--- End of stack trace from previous location ---
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, CancellationToken cancellationToken)
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, Int32 timeout, CancellationToken cancellationToken)
+   at MailKit.MailService.ConnectNetworkAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at MailKit.Net.Smtp.SmtpClient.ConnectAsync(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   at AuthService.Application.Services.EmailService.ExecuteSendEmailAsync(String to, String subject, String body) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\EmailService.cs:line 82
+[2026-03-16 09:13:16 INF] Verification email sent {"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"cd96ee57-0b15-4b28-aeed-18d969985095","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3DP8D4PV7:00000004","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DP8D4PV7"}
+[2026-03-16 09:13:22 INF] HTTP POST /api/v1/Auth/profile/by-id responded 200 in 34.3306 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3DP8D4PV7:00000005","ConnectionId":"0HNK3DP8D4PV7"}
+[2026-03-16 09:21:18 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 09:21:19 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-16 09:21:19 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-16 09:21:19 INF] AuthService API is running at http://localhost:5226. Health endpoint: http://localhost:5226/health {"SourceContext":"Program"}
+[2026-03-16 09:21:39 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNK3DUS77999:00000001","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DUS77999"}
+[2026-03-16 09:21:39 WRN] Registration rejected: email already exists {"EventId":{"Id":1004,"Name":"LogRegistrationWithExistingEmail"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"2707da4f-2631-4146-b32c-a086d0207e3c","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3DUS77999:00000001","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DUS77999"}
+[2026-03-16 09:21:39 ERR] An unhandled exception occurred {"SourceContext":"AuthService.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNK3DUS77999:00000001","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DUS77999"}
+AuthService.Application.Exceptions.BusinessException: Email already exists
+   at AuthService.Application.Services.AuthService.RegisterAsync(RegisterDto registerDto) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\AuthService.cs:line 33
+   at AuthService.Api.Controllers.AuthController.Register(RegisterDto registerDto) in C:\Eduardo-6to\auth_service\src\AuthService.Api\Controllers\AuthController.cs:line 72
+   at lambda_method22(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthService.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Eduardo-6to\auth_service\src\AuthService.Api\Middlewares\GlobalExceptionMiddleware.cs:line 17
+[2026-03-16 09:21:39 INF] HTTP POST /api/v1/Auth/register responded 400 in 183.5963 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3DUS77999:00000001","ConnectionId":"0HNK3DUS77999"}
+[2026-03-16 09:22:14 WRN] Registration rejected: username already exists {"EventId":{"Id":1005,"Name":"LogRegistrationWithExistingUsername"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"2707da4f-2631-4146-b32c-a086d0207e3c","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3DUS77999:00000002","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DUS77999"}
+[2026-03-16 09:22:14 ERR] An unhandled exception occurred {"SourceContext":"AuthService.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNK3DUS77999:00000002","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DUS77999"}
+AuthService.Application.Exceptions.BusinessException: Username already exists
+   at AuthService.Application.Services.AuthService.RegisterAsync(RegisterDto registerDto) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\AuthService.cs:line 40
+   at AuthService.Api.Controllers.AuthController.Register(RegisterDto registerDto) in C:\Eduardo-6to\auth_service\src\AuthService.Api\Controllers\AuthController.cs:line 72
+   at lambda_method22(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthService.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Eduardo-6to\auth_service\src\AuthService.Api\Middlewares\GlobalExceptionMiddleware.cs:line 17
+[2026-03-16 09:22:14 INF] HTTP POST /api/v1/Auth/register responded 400 in 63.8617 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3DUS77999:00000002","ConnectionId":"0HNK3DUS77999"}
+[2026-03-16 09:22:23 INF] User despacitos registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"2707da4f-2631-4146-b32c-a086d0207e3c","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3DUS77999:00000003","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DUS77999"}
+[2026-03-16 09:22:23 INF] HTTP POST /api/v1/Auth/register responded 201 in 538.3152 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3DUS77999:00000003","ConnectionId":"0HNK3DUS77999"}
+[2026-03-16 09:22:44 ERR] Error sending email to jackfallaseu@gmail.com {"SourceContext":"AuthService.Application.Services.EmailService","ActionId":"2707da4f-2631-4146-b32c-a086d0207e3c","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3DUS77999:00000003","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DUS77999"}
+System.Net.Sockets.SocketException (10060): Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.TaskToAsyncResult.End(IAsyncResult asyncResult)
+   at MailKit.Net.SocketUtils.SocketConnectState.OnEndConnect(IAsyncResult ar)
+--- End of stack trace from previous location ---
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, CancellationToken cancellationToken)
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, Int32 timeout, CancellationToken cancellationToken)
+   at MailKit.MailService.ConnectNetworkAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at MailKit.Net.Smtp.SmtpClient.ConnectAsync(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   at AuthService.Application.Services.EmailService.ExecuteSendEmailAsync(String to, String subject, String body) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\EmailService.cs:line 82
+[2026-03-16 09:22:44 INF] Verification email sent {"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"2707da4f-2631-4146-b32c-a086d0207e3c","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3DUS77999:00000003","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3DUS77999"}
+[2026-03-16 09:58:53 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 09:58:54 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-16 09:58:54 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-16 09:58:54 INF] AuthService API is running at http://localhost:5226. Health endpoint: http://localhost:5226/health {"SourceContext":"Program"}
+[2026-03-16 09:59:41 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNK3EJMV1N27:00000003","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3EJMV1N27"}
+[2026-03-16 09:59:41 INF] HTTP POST /api/v1/Auth/register responded 400 in 217.6208 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3EJMV1N27:00000003","ConnectionId":"0HNK3EJMV1N27"}
+[2026-03-16 09:59:55 INF] User edulopez1 registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"f430810f-c618-4838-9265-932bd00b11c7","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3EJMV1N27:00000004","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3EJMV1N27"}
+[2026-03-16 09:59:55 INF] HTTP POST /api/v1/Auth/register responded 201 in 670.1269 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3EJMV1N27:00000004","ConnectionId":"0HNK3EJMV1N27"}
+[2026-03-16 10:00:17 ERR] Error sending email to joseeduardolg07@gmail.com {"SourceContext":"AuthService.Application.Services.EmailService","ActionId":"f430810f-c618-4838-9265-932bd00b11c7","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3EJMV1N27:00000004","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3EJMV1N27"}
+System.Net.Sockets.SocketException (10060): Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.TaskToAsyncResult.End(IAsyncResult asyncResult)
+   at MailKit.Net.SocketUtils.SocketConnectState.OnEndConnect(IAsyncResult ar)
+--- End of stack trace from previous location ---
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, CancellationToken cancellationToken)
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, Int32 timeout, CancellationToken cancellationToken)
+   at MailKit.MailService.ConnectNetworkAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at MailKit.Net.Smtp.SmtpClient.ConnectAsync(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   at AuthService.Application.Services.EmailService.ExecuteSendEmailAsync(String to, String subject, String body) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\EmailService.cs:line 82
+[2026-03-16 10:00:17 INF] Verification email sent {"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"f430810f-c618-4838-9265-932bd00b11c7","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3EJMV1N27:00000004","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3EJMV1N27"}
+[2026-03-16 10:14:08 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 10:14:09 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-16 10:14:09 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-16 10:14:09 INF] AuthService API is running at http://localhost:5226. Health endpoint: http://localhost:5226/health {"SourceContext":"Program"}
+[2026-03-16 10:15:31 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNK3ES8IB238:00000003","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3ES8IB238"}
+[2026-03-16 10:15:32 INF] User fallas registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"b84c285f-7896-4820-a6c4-996898717cc5","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3ES8IB238:00000003","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3ES8IB238"}
+[2026-03-16 10:15:32 INF] HTTP POST /api/v1/Auth/register responded 201 in 649.0457 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3ES8IB238:00000003","ConnectionId":"0HNK3ES8IB238"}
+[2026-03-16 10:15:53 ERR] Error sending email to rgomarf@gmail.com {"SourceContext":"AuthService.Application.Services.EmailService","ActionId":"b84c285f-7896-4820-a6c4-996898717cc5","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3ES8IB238:00000003","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3ES8IB238"}
+System.Net.Sockets.SocketException (10060): Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.TaskToAsyncResult.End(IAsyncResult asyncResult)
+   at MailKit.Net.SocketUtils.SocketConnectState.OnEndConnect(IAsyncResult ar)
+--- End of stack trace from previous location ---
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, CancellationToken cancellationToken)
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, Int32 timeout, CancellationToken cancellationToken)
+   at MailKit.MailService.ConnectNetworkAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at MailKit.Net.Smtp.SmtpClient.ConnectAsync(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   at AuthService.Application.Services.EmailService.ExecuteSendEmailAsync(String to, String subject, String body) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\EmailService.cs:line 84
+[2026-03-16 10:15:53 INF] Verification email sent {"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"b84c285f-7896-4820-a6c4-996898717cc5","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3ES8IB238:00000003","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3ES8IB238"}
+[2026-03-16 10:21:10 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 10:21:11 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-16 10:21:11 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-16 10:21:11 INF] AuthService API is running at http://localhost:5226. Health endpoint: http://localhost:5226/health {"SourceContext":"Program"}
+[2026-03-16 10:23:24 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNK3F0651E01:00000006","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3F0651E01"}
+[2026-03-16 10:23:24 INF] User gonzaf registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"5f120044-ea22-444b-ab0d-87050df9fb82","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3F0651E01:00000006","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3F0651E01"}
+[2026-03-16 10:23:46 ERR] Error sending email to jesalv054@gmail.com {"SourceContext":"AuthService.Application.Services.EmailService","ActionId":"5f120044-ea22-444b-ab0d-87050df9fb82","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3F0651E01:00000006","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3F0651E01"}
+System.Net.Sockets.SocketException (10060): Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.TaskToAsyncResult.End(IAsyncResult asyncResult)
+   at MailKit.Net.SocketUtils.SocketConnectState.OnEndConnect(IAsyncResult ar)
+--- End of stack trace from previous location ---
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, CancellationToken cancellationToken)
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, Int32 timeout, CancellationToken cancellationToken)
+   at MailKit.MailService.ConnectNetworkAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at MailKit.Net.Smtp.SmtpClient.ConnectAsync(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   at AuthService.Application.Services.EmailService.ExecuteSendEmailAsync(String to, String subject, String body) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\EmailService.cs:line 84
+[2026-03-16 10:23:46 WRN] Email service returned false for jesalv054@gmail.com {"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"5f120044-ea22-444b-ab0d-87050df9fb82","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3F0651E01:00000006","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3F0651E01"}
+[2026-03-16 10:23:46 INF] HTTP POST /api/v1/Auth/register responded 201 in 21729.7821 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3F0651E01:00000006","ConnectionId":"0HNK3F0651E01"}
+[2026-03-16 10:28:39 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 10:28:40 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-16 10:28:40 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-16 10:28:40 INF] AuthService API is running at http://localhost:5226. Health endpoint: http://localhost:5226/health {"SourceContext":"Program"}
+[2026-03-16 10:29:23 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNK3F4HK6LHU:00000005","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3F4HK6LHU"}
+[2026-03-16 10:29:23 WRN] Registration rejected: email already exists {"EventId":{"Id":1004,"Name":"LogRegistrationWithExistingEmail"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"4d5b91e9-1d72-49c7-bedc-3c1bc7ac9783","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3F4HK6LHU:00000005","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3F4HK6LHU"}
+[2026-03-16 10:29:23 ERR] An unhandled exception occurred {"SourceContext":"AuthService.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNK3F4HK6LHU:00000005","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3F4HK6LHU"}
+AuthService.Application.Exceptions.BusinessException: Email already exists
+   at AuthService.Application.Services.AuthService.RegisterAsync(RegisterDto registerDto) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\AuthService.cs:line 33
+   at AuthService.Api.Controllers.AuthController.Register(RegisterDto registerDto) in C:\Eduardo-6to\auth_service\src\AuthService.Api\Controllers\AuthController.cs:line 72
+   at lambda_method22(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthService.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Eduardo-6to\auth_service\src\AuthService.Api\Middlewares\GlobalExceptionMiddleware.cs:line 17
+[2026-03-16 10:29:23 INF] HTTP POST /api/v1/Auth/register responded 400 in 157.4361 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3F4HK6LHU:00000005","ConnectionId":"0HNK3F4HK6LHU"}
+[2026-03-16 10:30:22 INF] User ed registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"4d5b91e9-1d72-49c7-bedc-3c1bc7ac9783","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3F4HK6LHU:00000006","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3F4HK6LHU"}
+[2026-03-16 10:30:32 ERR] Error crítico enviando correo a j4k1togamer@gmail.com: The operation has timed out. {"SourceContext":"AuthService.Application.Services.EmailService","ActionId":"4d5b91e9-1d72-49c7-bedc-3c1bc7ac9783","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3F4HK6LHU:00000006","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3F4HK6LHU"}
+System.TimeoutException: The operation has timed out.
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, Int32 timeout, CancellationToken cancellationToken)
+   at MailKit.MailService.ConnectNetworkAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at MailKit.Net.Smtp.SmtpClient.ConnectAsync(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   at AuthService.Application.Services.EmailService.ExecuteSendEmailAsync(String to, String subject, String body) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\EmailService.cs:line 93
+[2026-03-16 10:30:32 WRN] Email service returned false for j4k1togamer@gmail.com {"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"4d5b91e9-1d72-49c7-bedc-3c1bc7ac9783","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3F4HK6LHU:00000006","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3F4HK6LHU"}
+[2026-03-16 10:30:32 INF] HTTP POST /api/v1/Auth/register responded 201 in 10617.8921 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3F4HK6LHU:00000006","ConnectionId":"0HNK3F4HK6LHU"}
+[2026-03-16 10:34:58 ERR] An error occurred using the connection to database 'auth_db' on server 'tcp://localhost:5432'. {"EventId":{"Id":20004,"Name":"Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError"},"SourceContext":"Microsoft.EntityFrameworkCore.Database.Connection"}
+[2026-03-16 10:36:36 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 10:36:37 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-16 10:36:37 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-16 10:36:37 INF] AuthService API is running at http://localhost:5226. Health endpoint: http://localhost:5226/health {"SourceContext":"Program"}
+[2026-03-16 10:37:16 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNK3F8QROHHB:00000005","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3F8QROHHB"}
+[2026-03-16 10:37:16 INF] User edulopez registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"27ffdf79-be95-4296-86b0-a32aa8faee3b","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3F8QROHHB:00000005","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3F8QROHHB"}
+[2026-03-16 10:37:26 ERR] Error crítico enviando correo a joseeduardolg07@gmail.com: The operation has timed out. {"SourceContext":"AuthService.Application.Services.EmailService","ActionId":"27ffdf79-be95-4296-86b0-a32aa8faee3b","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3F8QROHHB:00000005","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3F8QROHHB"}
+System.TimeoutException: The operation has timed out.
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, Int32 timeout, CancellationToken cancellationToken)
+   at MailKit.MailService.ConnectNetworkAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at MailKit.Net.Smtp.SmtpClient.ConnectAsync(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   at AuthService.Application.Services.EmailService.ExecuteSendEmailAsync(String to, String subject, String body) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\EmailService.cs:line 88
+[2026-03-16 10:37:26 WRN] Email service returned false for joseeduardolg07@gmail.com {"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"27ffdf79-be95-4296-86b0-a32aa8faee3b","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3F8QROHHB:00000005","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3F8QROHHB"}
+[2026-03-16 10:37:26 INF] HTTP POST /api/v1/Auth/register responded 201 in 10473.3020 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3F8QROHHB:00000005","ConnectionId":"0HNK3F8QROHHB"}
+[2026-03-16 10:39:28 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"f1fec102-9ad2-4e89-8c09-8c8a9b78df2d","ActionName":"AuthService.Api.Controllers.AuthController.Login (AuthService.Api)","RequestId":"0HNK3F8QROHHB:00000006","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNK3F8QROHHB"}
+[2026-03-16 10:39:28 ERR] An unhandled exception occurred {"SourceContext":"AuthService.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNK3F8QROHHB:00000006","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNK3F8QROHHB"}
+System.UnauthorizedAccessException: User account is disabled
+   at AuthService.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\AuthService.cs:line 178
+   at AuthService.Api.Controllers.AuthController.Login(LoginDto loginDto) in C:\Eduardo-6to\auth_service\src\AuthService.Api\Controllers\AuthController.cs:line 80
+   at lambda_method508(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthService.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Eduardo-6to\auth_service\src\AuthService.Api\Middlewares\GlobalExceptionMiddleware.cs:line 17
+[2026-03-16 10:39:28 INF] HTTP POST /api/v1/Auth/login responded 401 in 96.4263 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3F8QROHHB:00000006","ConnectionId":"0HNK3F8QROHHB"}
+[2026-03-16 10:59:07 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 10:59:08 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-16 10:59:08 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-16 10:59:08 INF] AuthService API is running at http://localhost:5226. Health endpoint: http://localhost:5226/health {"SourceContext":"Program"}
+[2026-03-16 11:00:20 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNK3FLCESV3N:00000001","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3FLCESV3N"}
+[2026-03-16 11:00:20 INF] User fhasdjkf registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"88dc8007-e384-4394-bed8-4473a93556b5","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3FLCESV3N:00000001","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3FLCESV3N"}
+[2026-03-16 11:00:20 ERR] Error crítico enviando correo a jackfallaseu@gmail.com: Host desconocido. {"SourceContext":"AuthService.Application.Services.EmailService","ActionId":"88dc8007-e384-4394-bed8-4473a93556b5","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3FLCESV3N:00000001","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3FLCESV3N"}
+System.Net.Sockets.SocketException (11001): Host desconocido.
+   at System.Net.NameResolutionPal.ProcessResult(SocketError errorCode, GetAddrInfoExContext* context)
+   at System.Net.NameResolutionPal.GetAddressInfoExCallback(Int32 error, Int32 bytes, NativeOverlapped* overlapped)
+--- End of stack trace from previous location ---
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, CancellationToken cancellationToken)
+   at MailKit.Net.SocketUtils.ConnectAsync(String host, Int32 port, IPEndPoint localEndPoint, Int32 timeout, CancellationToken cancellationToken)
+   at MailKit.MailService.ConnectNetworkAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at MailKit.Net.Smtp.SmtpClient.ConnectAsync(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   at AuthService.Application.Services.EmailService.ExecuteSendEmailAsync(String to, String subject, String body) in C:\Eduardo-6to\auth_service\src\AuthService.Application\Services\EmailService.cs:line 88
+[2026-03-16 11:00:20 WRN] Email service returned false for jackfallaseu@gmail.com {"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"88dc8007-e384-4394-bed8-4473a93556b5","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3FLCESV3N:00000001","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3FLCESV3N"}
+[2026-03-16 11:00:20 INF] HTTP POST /api/v1/Auth/register responded 201 in 696.5140 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3FLCESV3N:00000001","ConnectionId":"0HNK3FLCESV3N"}
+[2026-03-16 11:01:13 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 11:01:13 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-16 11:01:14 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-16 11:01:14 INF] AuthService API is running at http://localhost:5226. Health endpoint: http://localhost:5226/health {"SourceContext":"Program"}
+[2026-03-16 11:01:43 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNK3FMH4QBGD:00000005","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3FMH4QBGD"}
+[2026-03-16 11:01:43 INF] User fasdf registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"cd4c3638-4d4f-4301-9f97-4833337e3375","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3FMH4QBGD:00000005","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3FMH4QBGD"}
+[2026-03-16 11:01:46 INF] Email sent successfully to rgomarf@gmail.com {"SourceContext":"AuthService.Application.Services.EmailService","ActionId":"cd4c3638-4d4f-4301-9f97-4833337e3375","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3FMH4QBGD:00000005","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3FMH4QBGD"}
+[2026-03-16 11:01:46 INF] Verification email sent successfully to rgomarf@gmail.com {"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"cd4c3638-4d4f-4301-9f97-4833337e3375","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3FMH4QBGD:00000005","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3FMH4QBGD"}
+[2026-03-16 11:01:46 INF] HTTP POST /api/v1/Auth/register responded 201 in 3052.6902 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3FMH4QBGD:00000005","ConnectionId":"0HNK3FMH4QBGD"}
+[2026-03-16 11:08:22 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-16 11:08:23 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-16 11:08:23 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-16 11:08:23 INF] AuthService API is running at http://localhost:5226. Health endpoint: http://localhost:5226/health {"SourceContext":"Program"}
+[2026-03-16 11:10:08 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNK3FQK7T2DM:00000009","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3FQK7T2DM"}
+[2026-03-16 11:10:09 INF] User dsfasdf registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"370e5c9b-cc66-4ed0-8fad-a8597d4e7251","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3FQK7T2DM:00000009","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3FQK7T2DM"}
+[2026-03-16 11:10:10 INF] Email sent successfully to jesalv054@gmail.com {"SourceContext":"AuthService.Application.Services.EmailService","ActionId":"370e5c9b-cc66-4ed0-8fad-a8597d4e7251","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3FQK7T2DM:00000009","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3FQK7T2DM"}
+[2026-03-16 11:10:10 INF] Verification email sent successfully to jesalv054@gmail.com {"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"370e5c9b-cc66-4ed0-8fad-a8597d4e7251","ActionName":"AuthService.Api.Controllers.AuthController.Register (AuthService.Api)","RequestId":"0HNK3FQK7T2DM:00000009","RequestPath":"/api/v1/Auth/register","ConnectionId":"0HNK3FQK7T2DM"}
+[2026-03-16 11:10:11 INF] HTTP POST /api/v1/Auth/register responded 201 in 2156.1101 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNK3FQK7T2DM:00000009","ConnectionId":"0HNK3FQK7T2DM"}

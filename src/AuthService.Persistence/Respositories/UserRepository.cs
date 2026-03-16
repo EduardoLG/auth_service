@@ -8,7 +8,7 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
 {
     private readonly ApplicationDbContext _context = context;
 
-    public async Task<User> GetByIdAsync(string id)
+    public async Task<User?> GetByIdAsync(string id)
     {
         var user = await _context.Users
             .Include(u => u.UserProfile)
@@ -68,14 +68,14 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
         return user;
     }
 
-    public async Task<User> CreateAsync(User user)
+    public async Task<User?> CreateAsync(User user)
     {
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
         return await GetByIdAsync(user.Id);
     }
 
-    public async Task<User> UpdateAsync(User user)
+    public async Task<User?> UpdateAsync(User user)
     {
         await _context.SaveChangesAsync();
         return await GetByIdAsync(user.Id);

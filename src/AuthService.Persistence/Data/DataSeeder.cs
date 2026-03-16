@@ -45,7 +45,7 @@ public static class DataSeeder
                         UserId = userId,
                         ProfilePictureUrl = "https://cdn.com/admin.jpg",
                         Bio = "System Administrator",
-                        DateOfBirth = new DateTime(1990, 1, 1)
+                        DateOfBirth = new DateTime(1990, 1, 1, 0, 0, 0, DateTimeKind.Utc)
                     },
                     UserEmail = new UserEmail
                     {

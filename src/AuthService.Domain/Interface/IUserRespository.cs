@@ -16,4 +16,5 @@ public interface IUserRepository
     Task<bool> ExistsByEmailAsync(string email);
     Task<bool> ExistsByUsernameAsync(string username);
     Task UpdateUserRoleAsync(string userId, string roleId);
+    Task<User?> GetByEmailVerificationTokenAsync(string token);
 }
