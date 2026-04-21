@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "n1Juw4LoHdw=",
+  "dgSpecHash": "O0UW8IP8LWQ=",
   "success": true,
-  "projectFilePath": "C:\\Eduardo-6to\\auth_service\\src\\AuthService.Persistence\\AuthServer.Persistence.csproj",
+  "projectFilePath": "C:\\Eduardo-6to\\kinalsports\\auth_service\\src\\AuthService.Persistence\\AuthServer.Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Informatica\\.nuget\\packages\\efcore.namingconventions\\9.0.0\\efcore.namingconventions.9.0.0.nupkg.sha512",
     "C:\\Users\\Informatica\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
