@@ -13,7 +13,7 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
         var user = await _context.Users
             .Include(u => u.UserProfile)
             .Include(u => u.UserEmail)
-            .Include(u => u.UserRoles)
+            .Include(u => u.UserRoles).ThenInclude(ur => ur.Role)
             .Include(u => u.PasswordReset) 
             .FirstOrDefaultAsync(u => u.Id == id);
 
@@ -25,7 +25,7 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
         var user = await _context.Users
             .Include(u => u.UserProfile)
             .Include(u => u.UserEmail)
-            .Include(u => u.UserRoles)
+            .Include(u => u.UserRoles).ThenInclude(ur => ur.Role)
             .Include(u => u.PasswordReset)
             .FirstOrDefaultAsync(u => EF.Functions.Like(u.Email, email));
 
@@ -37,7 +37,7 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
         var user = await _context.Users
             .Include(u => u.UserProfile)
             .Include(u => u.UserEmail)
-            .Include(u => u.UserRoles)
+            .Include(u => u.UserRoles).ThenInclude(ur => ur.Role)
             .Include(u => u.PasswordReset)
             .FirstOrDefaultAsync(u => EF.Functions.Like(u.Username, username)); // 'n' minúscula
 
@@ -49,7 +49,7 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
         var user = await _context.Users
             .Include(u => u.UserProfile)
             .Include(u => u.UserEmail)
-            .Include(u => u.UserRoles)
+            .Include(u => u.UserRoles).ThenInclude(ur => ur.Role)
             .Include(u => u.PasswordReset)
             .FirstOrDefaultAsync(u => u.UserEmail != null && u.UserEmail.EmailVerificationToken == token);
 
@@ -61,7 +61,7 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
         var user = await _context.Users
             .Include(u => u.UserProfile)
             .Include(u => u.UserEmail)
-            .Include(u => u.UserRoles)
+            .Include(u => u.UserRoles).ThenInclude(ur => ur.Role)
             .Include(u => u.PasswordReset)
             .FirstOrDefaultAsync(u => u.PasswordReset != null && u.PasswordReset.PasswordResetToken == token);
 

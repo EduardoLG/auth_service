@@ -5,7 +5,7 @@ namespace AuthService.Persistence.Data;
 
 public static class DataSeeder
 {
-    public static async Task SeedDataAsync(ApplicationDbContext context)
+    public static async Task SeedDataAsync(ApplicationDbContext context, string adminPasswordHash)
     {
         // 1. SEED DE ROLES
         if (!await context.Roles.AnyAsync())
@@ -35,7 +35,7 @@ public static class DataSeeder
                     Surname = "User",
                     Username = "admin",
                     Email = "admin@ksports.local",
-                    Password = new string('x', 255), // Cumple MaxLength(255)
+                    Password = adminPasswordHash,
                     Status = true,
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow,

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AuthServer.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d69e7d3b040c73e3d77dde6cb9b6a97eab159693")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ebb8847ea60fd508a654335afbe475afc44c82f1")]
 [assembly: System.Reflection.AssemblyProductAttribute("AuthServer.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AuthServer.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

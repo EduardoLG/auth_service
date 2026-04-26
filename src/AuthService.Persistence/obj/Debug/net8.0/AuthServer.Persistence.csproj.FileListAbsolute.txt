@@ -34,3 +34,21 @@ C:\Eduardo-6to\kinalsports\auth_service\src\AuthService.Persistence\obj\Debug\ne
 C:\Eduardo-6to\kinalsports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\AuthServer.Persistence.pdb
 C:\Eduardo-6to\kinalsports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\AuthServer.Persistence.genruntimeconfig.cache
 C:\Eduardo-6to\kinalsports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\ref\AuthServer.Persistence.dll
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\bin\Debug\net8.0\AuthServer.Persistence.deps.json
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\bin\Debug\net8.0\AuthServer.Persistence.runtimeconfig.json
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\bin\Debug\net8.0\AuthServer.Persistence.dll
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\bin\Debug\net8.0\AuthServer.Persistence.pdb
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\bin\Debug\net8.0\AuthService.Domain.dll
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\bin\Debug\net8.0\AuthService.Domain.pdb
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\AuthServer.Persistence.csproj.AssemblyReference.cache
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\AuthServer.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\AuthServer.Persistence.AssemblyInfoInputs.cache
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\AuthServer.Persistence.AssemblyInfo.cs
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\AuthServer.Persistence.csproj.CoreCompileInputs.cache
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\AuthServer.Persistence.sourcelink.json
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\AuthServ.49B3198F.Up2Date
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\AuthServer.Persistence.dll
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\refint\AuthServer.Persistence.dll
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\AuthServer.Persistence.pdb
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\AuthServer.Persistence.genruntimeconfig.cache
+C:\Users\JOSE ALEJANDRO\Desktop\Eduardo-6to\KinalSports\auth_service\src\AuthService.Persistence\obj\Debug\net8.0\ref\AuthServer.Persistence.dll
